@@ -1,6 +1,14 @@
 // event listener to respond to "Show another quote" button clicks
 // when user clicks anywhere on the button, the "printQuote" function is called
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+
+document.getElementById('loadQuote').addEventListener("click", function() {
+  printQuote();
+  reset();
+}, false);
+
+// code that doesn't seem to work
+//document.getElementById('loadQuote').onclick = reset();
+//document.getElementById('loadQuote').addEventListener("click", reset, false);
 
 // array of quotes
 var quotes = [
@@ -36,9 +44,11 @@ var quoteInterval = window.setInterval(printQuote, 8000);
 // color at the same time the quote changes
 var backgroundColorInterval = window.setInterval(setBackgroundColor, 8000);
 
-// finds a random color and sets the background to that
-function setBackgroundColor() {
-  
+// finds a random color
+function getRandomColor() {
+  var colors = ['red', 'blue', 'orange', 'purple'];
+  var random = Math.round(Math.random()*colors.length-1);
+  return colors[random];
 }
 
 // reset function which resets interval and chooses random background color
@@ -46,7 +56,7 @@ function setBackgroundColor() {
 function reset() {
   clearInterval(quoteInterval);
   quoteInterval = window.setInterval(printQuote, 8000);
-  setBackgroundColor();
+  document.style.backgroundColor = getRandomColor();
 }
 
 // generates random number between 0 and quotes.length-1
