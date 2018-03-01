@@ -6,10 +6,6 @@ document.getElementById('loadQuote').addEventListener("click", function() {
   reset();
 }, false);
 
-// code that doesn't seem to work
-//document.getElementById('loadQuote').onclick = reset();
-//document.getElementById('loadQuote').addEventListener("click", reset, false);
-
 // array of quotes
 var quotes = [
   {quote: "If you hear a voice within you say 'you cannot paint,' then by all means paint, and that voice will be silenced.",
@@ -46,21 +42,28 @@ var backgroundColorInterval = window.setInterval(setBackgroundColor, 8000);
 
 // finds a random color
 function getRandomColor() {
-  var colors = ['red', 'blue', 'orange', 'purple'];
-  var random = Math.round(Math.random()*colors.length-1);
+  var colors = ['red', 'blue', 'orange', 'purple', '#36b55c'];
+  var random = Math.floor(Math.random()*colors.length-1)+1;
   return colors[random];
 }
 
-// reset function which resets interval and chooses random background color
+// sets the background color
+function setBackgroundColor() {
+  var randomColor = getRandomColor();
+  document.body.style.backgroundColor = randomColor;
+}
+
+// reset function which resets interval;
+// calls setBackgroundColor to choose a new random background color;
 // when "Show another quote" button is clicked
 function reset() {
   clearInterval(quoteInterval);
   quoteInterval = window.setInterval(printQuote, 8000);
-  document.style.backgroundColor = getRandomColor();
+  setBackgroundColor();
 }
 
-// generates random number between 0 and quotes.length-1
-// chooses a quote in quotes array at position of random number
+// generates random number between 0 and quotes.length-1;
+// chooses a quote in quotes array at position of random number;
 // returns that quote
 function getRandomQuote() {
   var randomNum = Math.round(Math.random()*quotes.length-1);
@@ -68,22 +71,22 @@ function getRandomQuote() {
   return randomQuote;
 }
 
-// calls getRandomQuote() to retrieve a random quote object
-// constructs a string consisting of at least a quote, a source, and tags
-// if citation/year exists in quote object, they are added to string
+// calls getRandomQuote() to retrieve a random quote object;
+// constructs a string consisting of at least a quote, a source, and tags;
+// if citation/year exists in quote object, they are added to string;
 // then prints quote
 function printQuote() {
-  var quote = getRandomQuote();
+  var randomQuote = getRandomQuote();
   var fullQuote =
-    '<p class="quote">' + quote.quote + '</p>' +
-    '<p class="source">' + quote.source;
-  if (quote.citation != null) {
-    fullQuote += '<span class="citation">' + quote.citation + '</span>';
+    '<p class="quote">' + randomQuote.quote + '</p>' +
+    '<p class="source">' + randomQuote.source;
+  if (randomQuote.citation != null) {
+    fullQuote += '<span class="citation">' + randomQuote.citation + '</span>';
   }
-  if (quote.year != null) {
-    fullQuote += '<span class="year">' + quote.year + '</span>';
+  if (randomQuote.year != null) {
+    fullQuote += '<span class="year">' + randomQuote.year + '</span>';
   }
   fullQuote += '</p>';
-  fullQuote += '<p class="tags">' + quote.tags + '</p>';
+  fullQuote += '<p class="tags">' + randomQuote.tags + '</p>';
   document.getElementById('quote-box').innerHTML = fullQuote;
 }
