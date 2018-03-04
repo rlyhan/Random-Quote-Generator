@@ -8,29 +8,43 @@ document.getElementById('loadQuote').addEventListener("click", function() {
 
 // array of quotes
 var quotes = [
-  {quote: "If you hear a voice within you say 'you cannot paint,' then by all means paint, and that voice will be silenced.",
-  source: "Vincent van Gogh",
-  tags: "Artist, Historical Figure"},
-  {quote: "Life has meaning only in the struggle. Triumph or defeat is in the hands of the Gods. So let us celebrate the struggle!",
-  source: "Stevie Wonder",
-  tags: "Musician"},
-  {quote: "If you're going through hell, keep going.",
-  source: "Winston Churchill",
-  tags: "Politician, Historical Figure"},
-  {quote: "Don't cry because it's over, smile because it happened.",
-  source: "Dr. Seuss",
-  tags: "Author"},
-  {quote: "We must accept finite disappointment, but never lose infinite hope.",
-  source: "Martin Luther King, Jr.",
-  tags: "Activist, Historical Figure"},
-  {quote: "I refuse to accept other people’s ideas of happiness for me. As if there’s a one size fits all standard for happiness.",
-  source: "Kanye West",
-  tags: "Musician"},
-  {quote: "There is some good in this world, and it's worth fighting for.",
-  source: "J.R.R. Tolkien",
-  tags: "Author",
-  citation: "The Two Towers",
-  year: 1954}
+  {
+    quote: "If you hear a voice within you say 'you cannot paint,' then by all means paint, and that voice will be silenced.",
+    source: "Vincent van Gogh",
+    tags: "Artist, Historical Figure"
+  },
+  {
+    quote: "Life has meaning only in the struggle. Triumph or defeat is in the hands of the Gods. So let us celebrate the struggle!",
+    source: "Stevie Wonder",
+    tags: "Musician"
+  },
+  {
+    quote: "If you're going through hell, keep going.",
+    source: "Winston Churchill",
+    tags: "Politician, Historical Figure"
+  },
+  {
+    quote: "Don't cry because it's over, smile because it happened.",
+    source: "Dr. Seuss",
+    tags: "Author"
+  },
+  {
+    quote: "We must accept finite disappointment, but never lose infinite hope.",
+    source: "Martin Luther King, Jr.",
+    tags: "Activist, Historical Figure"
+  },
+  {
+    quote: "I refuse to accept other people’s ideas of happiness for me. As if there’s a one size fits all standard for happiness.",
+    source: "Kanye West",
+    tags: "Musician"
+  },
+  {
+    quote: "There is some good in this world, and it's worth fighting for.",
+    source: "J.R.R. Tolkien",
+    tags: "Author",
+    citation: "The Two Towers",
+    year: 1954
+  }
 ]
 
 // every 8 seconds (8000 milliseconds), automatically changes the quote
@@ -44,6 +58,7 @@ var backgroundColorInterval = window.setInterval(setBackgroundColor, 8000);
 function getRandomColor() {
   var colors = ['red', 'blue', 'orange', 'purple', '#36b55c'];
   var random = Math.floor(Math.random()*colors.length-1)+1;
+  console.log(random);
   return colors[random];
 }
 
@@ -66,7 +81,7 @@ function reset() {
 // chooses a quote in quotes array at position of random number;
 // returns that quote
 function getRandomQuote() {
-  var randomNum = Math.round(Math.random()*quotes.length-1);
+  var randomNum = Math.floor(Math.random()*quotes.length-1)+1;
   var randomQuote = quotes[randomNum];
   return randomQuote;
 }
