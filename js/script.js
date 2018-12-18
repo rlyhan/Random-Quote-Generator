@@ -66,6 +66,7 @@ function getRandomColor() {
 function setBackgroundColor() {
   var randomColor = getRandomColor();
   document.body.style.backgroundColor = randomColor;
+  document.getElementById('loadQuote').style.color = randomColor;
 }
 
 // reset function which resets interval;
